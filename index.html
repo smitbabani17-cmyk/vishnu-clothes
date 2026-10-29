@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PITCH & THREAD — Minimal Cricket-Inspired Fashion</title>
+  <!-- Google Fonts: Inter & Playfair Display / Cormorant Garamond for Editorial Feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Variables & Theme Setup */
+    :root {
+      --bg-offwhite: #F7F5F0;
+      --text-charcoal: #20211F;
+      --forest-green: #34483B;
+      --muted-olive: #777D62;
+      --soft-beige: #E8E1D5;
+      --terracotta: #A65F48;
+      --border-light: rgba(32, 33, 31, 0.12);
+      --border-strong: rgba(32, 33, 31, 0.25);
+      --font-body: 'Inter', sans-serif;
+      --font-serif: 'Cormorant Garamond', serif;
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-offwhite);
+      color: var(--text-charcoal);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Container Utility */
+    .container {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Announcement Bar */
+    .announcement-bar {
+      background-color: var(--forest-green);
+      color: var(--bg-offwhite);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .announcement-slide {
+      transition: var(--transition-smooth);
+      font-weight: 500;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: var(--bg-offwhite);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition-smooth);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand-logo {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-charcoal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-logo span.badge {
+      font-family: var(--font-body);
+      font-size: 10px;
+      background-color: var(--forest-green);
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 1px;
+      background-color: var(--text-charcoal);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .icon-btn {
+      position: relative;
+      padding: 6px;
+      color: var(--text-charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+    }
+
+    .icon-btn:hover {
+      opacity: 0.7;
+    }
+
+    .badge-count {
+      position: absolute;
+      top: 0px;
+      right: -2px;
+      background-color: var(--terracotta);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Hero Carousel Section */
+    .hero-carousel {
+      position: relative;
+      width: 100%;
+      height: 75vh;
+      min-height: 500px;
+      max-height: 750px;
+      overflow: hidden;
+      background-color: var(--soft-beige);
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85);
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 10;
+      color: #fff;
+      max-width: 620px;
+      padding: 0 40px;
+    }
+
+    .slide-subtitle {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+      color: var(--soft-beige);
+      font-weight: 600;
+    }
+
+    .slide-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.05;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .slide-desc {
+      font-size: 15px;
+      margin-bottom: 28px;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-primary {
+      background-color: var(--bg-offwhite);
+      color: var(--text-charcoal);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--forest-green);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .btn-secondary:hover {
+      background-color: #fff;
+      color: var(--text-charcoal);
+    }
+
+    /* Carousel Controls */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      background: rgba(247, 245, 240, 0.8);
+      color: var(--text-charcoal);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(4px);
+    }
+
+    .carousel-arrow:hover {
+      background: var(--text-charcoal);
+      color: #fff;
+    }
+
+    .carousel-arrow.prev { left: 24px; }
+    .carousel-arrow.next { right: 24px; }
+
+    .carousel-indicators {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 20;
+    }
+
+    .indicator {
+      width: 32px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .indicator.active {
+      background: #fff;
+      height: 3px;
+    }
+
+    /* Categories Section */
+    .section-padding {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 48px auto;
+    }
+
+    .section-subtitle {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--muted-olive);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .category-card {
+      position: relative;
+      height: 360px;
+      overflow: hidden;
+      border-radius: 2px;
+      cursor: pointer;
+      group: hover;
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .category-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .category-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      color: #fff;
+    }
+
+    .category-name {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .category-action {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Product Section & Filters */
+    .catalog-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-tab {
+      padding: 8px 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background-color: transparent;
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      white-space: nowrap;
+      transition: var(--transition-smooth);
+    }
+
+    .filter-tab.active, .filter-tab:hover {
+      background-color: var(--text-charcoal);
+      color: var(--bg-offwhite);
+      border-color: var(--text-charcoal);
+    }
+
+    .sort-select {
+      padding: 8px 16px;
+      font-size: 13px;
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-offwhite);
+      color: var(--text-charcoal);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Product Grid & Cards */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      position: relative;
+      background-color: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background-color: var(--soft-beige);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.03);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: var(--forest-green);
+      color: #fff;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+      font-weight: 600;
+    }
+
+    .wishlist-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-charcoal);
+      transition: var(--transition-smooth);
+      z-index: 5;
+    }
+
+    .wishlist-btn.active {
+      color: var(--terracotta);
+    }
+
+    .product-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-category {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted-olive);
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .price-current {
+      font-weight: 600;
+      color: var(--text-charcoal);
+    }
+
+    .price-original {
+      text-decoration: line-through;
+      color: #888;
+      font-size: 13px;
+    }
+
+    .price-discount {
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .card-actions {
+      margin-top: auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+
+    .add-cart-btn {
+      background-color: var(--text-charcoal);
+      color: #fff;
+      padding: 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+    }
+
+    .add-cart-btn:hover {
+      background-color: var(--forest-green);
+    }
+
+    .quick-view-btn {
+      border: 1px solid var(--border-light);
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--text-charcoal);
+      border-radius: 2px;
+    }
+
+    .quick-view-btn:hover {
+      border-color: var(--text-charcoal);
+    }
+
+    /* Promotional / Offers Section */
+    .promo-banner {
+      background-color: var(--forest-green);
+      color: var(--bg-offwhite);
+      padding: 60px 0;
+      margin: 60px 0;
+      position: relative;
+    }
+
+    .promo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .promo-card {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 32px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .promo-code-badge {
+      display: inline-block;
+      background-color: var(--terracotta);
+      color: #fff;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    .promo-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .promo-desc {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 16px;
+    }
+
+    .copy-code-btn {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--soft-beige);
+      border-bottom: 1px solid var(--soft-beige);
+      padding-bottom: 2px;
+    }
+
+    /* Sliding Drawer (Cart) */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      background-color: var(--bg-offwhite);
+      z-index: 2001;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .close-drawer {
+      font-size: 24px;
+      color: var(--text-charcoal);
+    }
+
+    .drawer-body {
+      padding: 24px;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 16px;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .cart-item-img {
+      width: 80px;
+      height: 100px;
+      object-fit: cover;
+      background-color: var(--soft-beige);
+    }
+
+    .cart-item-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cart-item-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .cart-item-meta {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .cart-item-price {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-light);
+      width: fit-content;
+      margin-top: 6px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .qty-val {
+      width: 32px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .drawer-footer {
+      padding: 24px;
+      border-top: 1px solid var(--border-light);
+      background-color: #fff;
+    }
+
+    .coupon-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .coupon-input {
+      flex-grow: 1;
+      padding: 10px 12px;
+      font-size: 12px;
+      border: 1px solid var(--border-light);
+      text-transform: uppercase;
+      outline: none;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .summary-row.total {
+      font-size: 16px;
+      font-weight: 700;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-light);
+      margin-top: 12px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background-color: var(--forest-green);
+      color: #fff;
+      padding: 14px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-top: 16px;
+      border-radius: 2px;
+    }
+
+    /* Quick View & Detail Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.6);
+      z-index: 2500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background-color: var(--bg-offwhite);
+      max-width: 850px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 2px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding: 32px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 24px;
+      z-index: 10;
+    }
+
+    .size-selector {
+      display: flex;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .size-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+    }
+
+    .size-btn.selected, .size-btn:hover {
+      background-color: var(--text-charcoal);
+      color: #fff;
+      border-color: var(--text-charcoal);
+    }
+
+    /* Checkout Overlay Section */
+    .checkout-view {
+      position: fixed;
+      inset: 0;
+      background-color: var(--bg-offwhite);
+      z-index: 3000;
+      overflow-y: auto;
+      display: none;
+      padding: 40px 0;
+    }
+
+    .checkout-view.active {
+      display: block;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-light);
+      background-color: #fff;
+      font-size: 14px;
+      border-radius: 2px;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--text-charcoal);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Search Bar Modal */
+    .search-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--bg-offwhite);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1500;
+      padding: 24px;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .search-modal.open {
+      transform: translateY(0);
+    }
+
+    .search-input-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      font-family: var(--font-serif);
+      font-size: 28px;
+      border: none;
+      border-bottom: 2px solid var(--text-charcoal);
+      background: transparent;
+      padding: 8px 40px 8px 0;
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--text-charcoal);
+      color: var(--soft-beige);
+      padding: 80px 0 40px 0;
+      margin-top: 80px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .footer-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-offwhite);
+        flex-direction: column;
+        padding: 32px;
+        gap: 20px;
+        border-bottom: 1px solid var(--border-light);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .hero-carousel {
+        height: 60vh;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="announcement-slide" id="announcementText">
+      Free shipping across India on all orders above ₹1,499
+    </div>
+  </div>
+
+  <!-- Main Sticky Header -->
+  <header>
+    <div class="container header-inner">
+      <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+
+      <a href="#" class="brand-logo" onclick="filterCategory('all'); return false;">
+        PITCH & THREAD <span class="badge">IND</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#" class="nav-link active" onclick="filterCategory('all')">Home</a></li>
+          <li><a href="#" class="nav-link" onclick="filterCategory('men')">Men</a></li>
+          <li><a href="#" class="nav-link" onclick="filterCategory('women')">Women</a></li>
+          <li><a href="#" class="nav-link" onclick="filterCategory('cricket')">Cricket Edit</a></li>
+          <li><a href="#" class="nav-link" onclick="filterCategory('streetwear')">Streetwear</a></li>
+          <li><a href="#" class="nav-link" onclick="filterCategory('sale')">Sale</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="searchToggleBtn" title="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button class="icon-btn" id="wishlistIconBtn" onclick="toggleWishlistModal()" title="Wishlist">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </button>
+        <button class="icon-btn" id="cartIconBtn" onclick="toggleCartDrawer()" title="Shopping Bag">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="badge-count" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Modal Bar -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-input-wrap">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search jerseys, hoodies, polos..." onkeyup="handleSearch(event)">
+      <button class="icon-btn" style="position:absolute; right:0; top:12px;" onclick="toggleSearchModal()">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero Carousel Section -->
+  <section class="hero-carousel" id="heroCarousel">
+    <div class="carousel-track" id="carouselTrack">
+      <!-- Slide 1 -->
+      <div class="carousel-slide">
+        <img class="slide-bg" src="https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=1600&q=80" alt="New Season Essentials" onerror="this.src='https://placehold.co/1600x800/34483B/FFF?text=New+Season+Essentials'">
+        <div class="slide-content">
+          <p class="slide-subtitle">Spring / Summer 2026</p>
+          <h1 class="slide-title">Built for the Game.<br>Styled for Everyday.</h1>
+          <p class="slide-desc">Refined silhouettes blending classic test cricket heritage with modern street aesthetics.</p>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="scrollToCatalog()">Shop Collection</button>
+            <button class="btn btn-secondary" onclick="filterCategory('cricket')">Explore Cricket Edit</button>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="carousel-slide">
+        <img class="slide-bg" src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1600&q=80" alt="Cricket Edit" onerror="this.src='https://placehold.co/1600x800/20211F/FFF?text=Cricket+Edit+Streetwear'">
+        <div class="slide-content">
+          <p class="slide-subtitle">Limited Capsule</p>
+          <h1 class="slide-title">Stadium Heritage<br>Reimagined.</h1>
+          <p class="slide-desc">Heavyweight organic cottons, embroidered vintage numbers, and tailored fits.</p>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="filterCategory('cricket')">Shop Capsule</button>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="carousel-slide">
+        <img class="slide-bg" src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1600&q=80" alt="End of Season" onerror="this.src='https://placehold.co/1600x800/777D62/FFF?text=End+Of+Season+Sale'">
+        <div class="slide-content">
+          <p class="slide-subtitle">Exclusive Offers</p>
+          <h1 class="slide-title">End of Season<br>Curated Sale.</h1>
+          <p class="slide-desc">Up to 30% off on signature oversized tees, track bottoms, and outerwear.</p>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="filterCategory('sale')">Shop Sale</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-arrow prev" id="prevSlideBtn" aria-label="Previous Slide">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <button class="carousel-arrow next" id="nextSlideBtn" aria-label="Next Slide">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+
+    <div class="carousel-indicators" id="carouselIndicators">
+      <div class="indicator active" onclick="goToSlide(0)"></div>
+      <div class="indicator" onclick="goToSlide(1)"></div>
+      <div class="indicator" onclick="goToSlide(2)"></div>
+    </div>
+  </section>
+
+  <!-- Categories Grid Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-subtitle">Curated Categories</p>
+        <h2 class="section-title">Designed for the Modern Spectator</h2>
+      </div>
+
+      <div class="category-grid">
+        <div class="category-card" onclick="filterCategory('cricket')">
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" alt="Cricket Collection" onerror="this.src='https://placehold.co/600x800/34483B/FFF?text=Cricket+Collection'">
+          <div class="category-overlay">
+            <h3 class="category-name">Cricket Collection</h3>
+            <span class="category-action">Explore Edit &rarr;</span>
+          </div>
+        </div>
+        <div class="category-card" onclick="filterCategory('men')">
+          <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=600&q=80" alt="Men's Streetwear" onerror="this.src='https://placehold.co/600x800/20211F/FFF?text=Menswear'">
+          <div class="category-overlay">
+            <h3 class="category-name">Men's Wear</h3>
+            <span class="category-action">Shop Menswear &rarr;</span>
+          </div>
+        </div>
+        <div class="category-card" onclick="filterCategory('women')">
+          <img src="https://images.unsplash.com/photo-1508427953056-b00b8d78ebf5?auto=format&fit=crop&w=600&q=80" alt="Women's Collection" onerror="this.src='https://placehold.co/600x800/777D62/FFF?text=Womenswear'">
+          <div class="category-overlay">
+            <h3 class="category-name">Women's Edit</h3>
+            <span class="category-action">Shop Womenswear &rarr;</span>
+          </div>
+        </div>
+        <div class="category-card" onclick="filterCategory('accessories')">
+          <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80" alt="Accessories" onerror="this.src='https://placehold.co/600x800/E8E1D5/20211F?text=Caps+%26+Accessories'">
+          <div class="category-overlay">
+            <h3 class="category-name">Caps & Accessories</h3>
+            <span class="category-action">View Accessories &rarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Catalog Section -->
+  <section class="section-padding" id="catalogSection" style="background-color: #fff;">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-subtitle">The Complete Collection</p>
+        <h2 class="section-title">Signature Apparel & Jerseys</h2>
+      </div>
+
+      <!-- Controls & Filter Bar -->
+      <div class="catalog-controls">
+        <div class="filter-tabs" id="filterTabs">
+          <button class="filter-tab active" onclick="filterCategory('all')">All Items</button>
+          <button class="filter-tab" onclick="filterCategory('cricket')">Cricket Edit</button>
+          <button class="filter-tab" onclick="filterCategory('streetwear')">Streetwear</button>
+          <button class="filter-tab" onclick="filterCategory('men')">Men</button>
+          <button class="filter-tab" onclick="filterCategory('women')">Women</button>
+          <button class="filter-tab" onclick="filterCategory('sale')">Sale</button>
+        </div>
+
+        <div>
+          <select class="sort-select" id="sortSelect" onchange="handleSortChange()">
+            <option value="featured">Featured First</option>
+            <option value="low-high">Price: Low to High</option>
+            <option value="high-low">Price: High to Low</option>
+            <option value="newest">New Arrivals</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Offers & Promo Section -->
+  <section class="promo-banner">
+    <div class="container">
+      <div class="section-header" style="color: #fff;">
+        <p class="section-subtitle" style="color: var(--soft-beige);">Limited Season Offers</p>
+        <h2 class="section-title">Exclusive Store Coupons</h2>
+      </div>
+
+      <div class="promo-grid">
+        <div class="promo-card">
+          <span class="promo-code-badge">WELCOME10</span>
+          <h3 class="promo-title">10% Off First Order</h3>
+          <p class="promo-desc">Enjoy 10% off your initial purchase across all luxury streetwear essentials.</p>
+          <button class="copy-code-btn" onclick="applyCouponDirectly('WELCOME10')">Apply to Cart</button>
+        </div>
+
+        <div class="promo-card">
+          <span class="promo-code-badge">CRICKET15</span>
+          <h3 class="promo-title">15% Off Cricket Edit</h3>
+          <p class="promo-desc">Applicable on all limited-edition stadium jerseys and embroidered hoodies.</p>
+          <button class="copy-code-btn" onclick="applyCouponDirectly('CRICKET15')">Apply to Cart</button>
+        </div>
+
+        <div class="promo-card">
+          <span class="promo-code-badge">FREESHIP</span>
+          <h3 class="promo-title">Complimentary Delivery</h3>
+          <p class="promo-desc">Free delivery across India on orders meeting coupon guidelines.</p>
+          <button class="copy-code-btn" onclick="applyCouponDirectly('FREESHIP')">Apply to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-brand">PITCH & THREAD</h3>
+          <p style="font-size: 13px; opacity: 0.8; max-width: 320px; line-height: 1.7;">
+            Minimalist clothing designed at the intersection of Indian cricket heritage, quiet luxury, and urban streetwear culture.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="filterCategory('cricket')">Cricket Collection</a></li>
+            <li><a href="#" onclick="filterCategory('men')">Menswear</a></li>
+            <li><a href="#" onclick="filterCategory('women')">Womenswear</a></li>
+            <li><a href="#" onclick="filterCategory('sale')">End of Season Sale</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Studio</h4>
+          <p style="font-size:13px; opacity: 0.8;">Indiranagar, 100ft Road<br>Bengaluru, Karnataka 560038<br>India</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 PITCH & THREAD India Pvt. Ltd. All Rights Reserved. Sample store promotional build.</p>
+        <p>Built with Vanilla HTML/CSS/JS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART SLIDE-OUT DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleCartDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Shopping Bag (<span id="cartItemCountHeader">0</span>)</h3>
+      <button class="close-drawer" onclick="toggleCartDrawer()">&times;</button>
+    </div>
+
+    <div class="drawer-body" id="cartItemsContainer">
+      <!-- Dynamic Render -->
+    </div>
+
+    <div class="drawer-footer">
+      <div class="coupon-box">
+        <input type="text" id="couponInput" class="coupon-input" placeholder="Coupon Code (e.g. WELCOME10)">
+        <button class="btn btn-primary" style="padding: 8px 16px; font-size: 11px;" onclick="handleApplyCoupon()">Apply</button>
+      </div>
+      <div id="appliedCouponTag" style="display:none; font-size:12px; color:var(--forest-green); margin-bottom:8px;"></div>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">₹0</span>
+      </div>
+      <div class="summary-row">
+        <span>Discount</span>
+        <span id="cartDiscount" style="color:var(--terracotta);">-₹0</span>
+      </div>
+      <div class="summary-row">
+        <span>Estimated Delivery</span>
+        <span id="cartShipping">₹79</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total Payable</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+
+      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- QUICK VIEW / PRODUCT DETAIL MODAL -->
+  <div class="modal" id="quickViewModal">
+    <div class="modal-content" id="modalContent">
+      <!-- Dynamic render -->
+    </div>
+  </div>
+
+  <!-- CHECKOUT SCREEN OVERLAY -->
+  <div class="checkout-view" id="checkoutView">
+    <div class="container">
+      <button class="btn btn-secondary" style="color:var(--text-charcoal); border-color:var(--border-light); margin-bottom: 24px;" onclick="closeCheckout()">
+        &larr; Return to Store
+      </button>
+
+      <div class="checkout-grid">
+        <!-- Billing Details Form -->
+        <div>
+          <h2 class="section-title" style="margin-bottom: 24px;">Shipping & Contact Information</h2>
+          <form id="checkoutForm" onsubmit="processOrder(event)">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="custName" class="form-control" required placeholder="e.g. Rahul Sharma">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" id="custEmail" class="form-control" required placeholder="rahul@example.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Mobile Number (10 Digits) *</label>
+                <input type="tel" id="custPhone" class="form-control" pattern="[6-9][0-9]{9}" required placeholder="9876543210">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Street Address *</label>
+              <input type="text" id="custAddress" class="form-control" required placeholder="House No, Street, Area">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">City *</label>
+                <input type="text" id="custCity" class="form-control" required placeholder="Bengaluru">
+              </div>
+              <div class="form-group">
+                <label class="form-label">State *</label>
+                <input type="text" id="custState" class="form-control" required placeholder="Karnataka">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">PIN Code (6 Digits) *</label>
+                <input type="text" id="custPin" class="form-control" pattern="[1-9][0-9]{5}" required placeholder="560038">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Payment Method</label>
+                <select class="form-control">
+                  <option>UPI / Google Pay / PhonePe</option>
+                  <option>Credit / Debit Card</option>
+                  <option>Net Banking</option>
+                  <option>Cash on Delivery</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="checkout-btn" style="padding: 16px;">Confirm & Place Order</button>
+          </form>
+        </div>
+
+        <!-- Order Summary Side Card -->
+        <div style="background:#fff; padding:24px; border:1px solid var(--border-light); height:fit-content;">
+          <h3 class="drawer-title" style="margin-bottom: 16px;">Order Summary</h3>
+          <div id="checkoutSummaryItems" style="margin-bottom: 20px; max-height: 280px; overflow-y: auto;">
+            <!-- Rendered JS -->
+          </div>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="coSubtotal">₹0</span>
+          </div>
+          <div class="summary-row">
+            <span>Discount</span>
+            <span id="coDiscount" style="color:var(--terracotta);">-₹0</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span id="coShipping">₹0</span>
+          </div>
+          <div class="summary-row total">
+            <span>Final Amount</span>
+            <span id="coTotal">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER CONFIRMATION MODAL -->
+  <div class="modal" id="orderSuccessModal">
+    <div class="modal-content" style="max-width: 500px; text-align: center; display: block;">
+      <div style="font-size:48px; color:var(--forest-green); margin-bottom: 12px;">✓</div>
+      <h2 class="section-title" style="margin-bottom: 8px;">Order Placed Successfully!</h2>
+      <p style="font-size:14px; margin-bottom: 16px;">Thank you for shopping with Pitch & Thread.</p>
+      <p style="font-size:12px; background:var(--soft-beige); padding:12px; margin-bottom:24px;">Order ID: <strong id="outOrderId">#PT-88912</strong><br>A confirmation has been sent to your email.</p>
+      <button class="btn btn-primary" onclick="resetAndHome()">Continue Shopping</button>
+    </div>
+  </div>
+
+  <script>
+    /* ===================================================
+       1. DATA & STATE MANAGEMENT
+       =================================================== */
+    const PRODUCTS = [
+      {
+        id: 1,
+        title: "Test Edition Oversized Heavy Tee",
+        category: "cricket",
+        gender: "men",
+        price: 1799,
+        originalPrice: 2299,
+        badge: "Bestseller",
+        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+        description: "280 GSM combed organic cotton oversized t-shirt featuring subtle tonal 'No. 10' embroidery on the rear hem.",
+        sizes: ["S", "M", "L", "XL"]
+      },
+      {
+        id: 2,
+        title: "Stadium Heritage Knit Polo",
+        category: "cricket",
+        gender: "men",
+        price: 2499,
+        originalPrice: 2999,
+        badge: "New",
+        image: "https://images.unsplash.com/photo-1625910513413-5fc283401822?auto=format&fit=crop&w=800&q=80",
+        description: "Vintage sweater-knit polo with varsity ribbed tipping, inspired by classic 1970s pavilion style.",
+        sizes: ["S", "M", "L", "XL"]
+      },
+      {
+        id: 3,
+        title: "Pavilion Tailored Track Trousers",
+        category: "streetwear",
+        gender: "men",
+        price: 2899,
+        originalPrice: 3499,
+        badge: null,
+        image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+        description: "Relaxed tailored trousers with concealed elastic drawstring waist and side piping.",
+        sizes: ["M", "L", "XL"]
+      },
+      {
+        id: 4,
+        title: "Flannel Club Blazer - Forest Green",
+        category: "streetwear",
+        gender: "women",
+        price: 4999,
+        originalPrice: 5999,
+        badge: "Editorial",
+        image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80",
+        description: "Unstructured soft wool-blend blazer featuring brass crest buttons.",
+        sizes: ["XS", "S", "M", "L"]
+      },
+      {
+        id: 5,
+        title: "1983 Victory Oversized Hoodie",
+        category: "cricket",
+        gender: "women",
+        price: 3299,
+        originalPrice: 3999,
+        badge: "Popular",
+        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+        description: "Loopback fleece cotton hoodie with high-density minimalist chest print.",
+        sizes: ["S", "M", "L"]
+      },
+      {
+        id: 6,
+        title: "Cricket Clean Minimal Dad Cap",
+        category: "accessories",
+        gender: "unisex",
+        price: 899,
+        originalPrice: 1199,
+        badge: "Sale",
+        image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80",
+        description: "Unstructured 6-panel washed twill cap with brass strap buckle.",
+        sizes: ["One Size"]
+      },
+      {
+        id: 7,
+        title: "Tonal Stripe Matchday Jersey",
+        category: "cricket",
+        gender: "men",
+        price: 1999,
+        originalPrice: 2499,
+        badge: "Limited",
+        image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=800&q=80",
+        description: "Breathable jacquard pattern streetwear jersey with subtle matte badge.",
+        sizes: ["S", "M", "L", "XL"]
+      },
+      {
+        id: 8,
+        title: "Minimalist Ribbed Tank Top",
+        category: "streetwear",
+        gender: "women",
+        price: 799,
+        originalPrice: 999,
+        badge: null,
+        image: "https://images.unsplash.com/photo-1508427953056-b00b8d78ebf5?auto=format&fit=crop&w=800&q=80",
+        description: "Heavy 2x2 stretch ribbed cotton tank top with deep scoop neckline.",
+        sizes: ["XS", "S", "M", "L"]
+      }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('pt_cart')) || [];
+    let wishlist = JSON.parse(localStorage.getItem('pt_wishlist')) || [];
+    let appliedCoupon = null;
+    let currentCategoryFilter = 'all';
+
+    // Announcement bar messages
+    const announcements = [
+      "Free shipping across India on all orders above ₹1,499",
+      "New Season Stadium Capsule Available Now",
+      "Use coupon WELCOME10 for 10% off your first purchase"
+    ];
+    let announcementIndex = 0;
+
+    // Currency Formatter
+    const inrFormatter = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+
+    /* ===================================================
+       2. INITIALIZATION
+       =================================================== */
+    window.onload = function() {
+      renderProducts();
+      updateCartUI();
+      updateWishlistUI();
+
+      // Start Carousel AutoPlay
+      startCarouselAutoPlay();
+
+      // Announcement Bar Interval
+      setInterval(() => {
+        announcementIndex = (announcementIndex + 1) % announcements.length;
+        document.getElementById('announcementText').textContent = announcements[announcementIndex];
+      }, 4000);
+
+      // Mobile Menu Toggle
+      document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+        document.getElementById('navMenu').classList.toggle('open');
+      });
+
+      // Search Toggle
+      document.getElementById('searchToggleBtn').addEventListener('click', toggleSearchModal);
+    };
+
+    /* ===================================================
+       3. HERO CAROUSEL LOGIC
+       =================================================== */
+    let currentSlide = 0;
+    let carouselInterval;
+    const track = document.getElementById('carouselTrack');
+    const indicators = document.querySelectorAll('.indicator');
+
+    function goToSlide(index) {
+      currentSlide = index;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      indicators.forEach((ind, i) => {
+        ind.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % 3;
+      goToSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + 3) % 3;
+      goToSlide(currentSlide);
+    }
+
+    function startCarouselAutoPlay() {
+      carouselInterval = setInterval(nextSlide, 5000);
+    }
+
+    document.getElementById('prevSlideBtn').addEventListener('click', () => {
+      prevSlide();
+      resetCarouselTimer();
+    });
+
+    document.getElementById('nextSlideBtn').addEventListener('click', () => {
+      nextSlide();
+      resetCarouselTimer();
+    });
+
+    const heroSection = document.getElementById('heroCarousel');
+    heroSection.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+    heroSection.addEventListener('mouseleave', startCarouselAutoPlay);
+
+    function resetCarouselTimer() {
+      clearInterval(carouselInterval);
+      startCarouselAutoPlay();
+    }
+
+    function scrollToCatalog() {
+      document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ===================================================
+       4. CATALOG & RENDER LOGIC
+       =================================================== */
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      let filtered = PRODUCTS.filter(p => {
+        if (currentCategoryFilter === 'all') return true;
+        if (currentCategoryFilter === 'sale') return p.badge === 'Sale' || p.originalPrice > p.price;
+        if (currentCategoryFilter === 'men') return p.gender === 'men' || p.gender === 'unisex';
+        if (currentCategoryFilter === 'women') return p.gender === 'women' || p.gender === 'unisex';
+        return p.category === currentCategoryFilter;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px 0; opacity: 0.6;">
+          <p>No products found matching the selected filter.</p>
+        </div>`;
+        return;
+      }
+
+      filtered.forEach(product => {
+        const isWishlisted = wishlist.includes(product.id);
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="product-img-wrap">
+            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+            <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
+              <svg width="16" height="16" fill="${isWishlisted ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </button>
+            <img class="product-img" src="${product.image}" alt="${product.title}" onerror="this.src='https://placehold.co/600x800/E8E1D5/20211F?text=Product+Image'">
+          </div>
+          <div class="product-info">
+            <span class="product-category">${product.category.toUpperCase()}</span>
+            <h3 class="product-title">${product.title}</h3>
+            <div class="price-row">
+              <span class="price-current">${inrFormatter.format(product.price)}</span>
+              ${product.originalPrice ? `<span class="price-original">${inrFormatter.format(product.originalPrice)}</span>` : ''}
+            </div>
+            <div class="card-actions">
+              <button class="add-cart-btn" onclick="openQuickView(${product.id})">Select Size</button>
+              <button class="quick-view-btn" onclick="openQuickView(${product.id})">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCategory(cat) {
+      currentCategoryFilter = cat;
+      // Update UI tabs
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('onclick').includes(`'${cat}'`));
+      });
+      renderProducts();
+    }
+
+    function handleSortChange() {
+      const val = document.getElementById('sortSelect').value;
+      if (val === 'low-high') {
+        PRODUCTS.sort((a, b) => a.price - b.price);
+      } else if (val === 'high-low') {
+        PRODUCTS.sort((a, b) => b.price - a.price);
+      } else {
+        PRODUCTS.sort((a, b) => a.id - b.id);
+      }
+      renderProducts();
+    }
+
+    /* ===================================================
+       5. SEARCH & WISHLIST MODAL
+       =================================================== */
+    function toggleSearchModal() {
+      document.getElementById('searchModal').classList.toggle('open');
+    }
+
+    function handleSearch(e) {
+      const q = e.target.value.toLowerCase();
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      const matched = PRODUCTS.filter(p => p.title.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+      matched.forEach(product => {
+        // Simple search render
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="product-info">
+            <h3 class="product-title">${product.title}</h3>
+            <span class="price-current">${inrFormatter.format(product.price)}</span>
+            <button class="add-cart-btn" style="margin-top:10px" onclick="openQuickView(${product.id}); toggleSearchModal();">View Product</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleWishlist(id) {
+      if (wishlist.includes(id)) {
+        wishlist = wishlist.filter(x => x !== id);
+      } else {
+        wishlist.push(id);
+      }
+      localStorage.setItem('pt_wishlist', JSON.stringify(wishlist));
+      updateWishlistUI();
+      renderProducts();
+    }
+
+    function updateWishlistUI() {
+      document.getElementById('wishlistBadge').textContent = wishlist.length;
+    }
+
+    function toggleWishlistModal() {
+      if (wishlist.length === 0) {
+        alert('Your wishlist is empty.');
+        return;
+      }
+      filterCategory('all');
+      scrollToCatalog();
+    }
+
+    /* ===================================================
+       6. QUICK VIEW / PRODUCT DETAILS MODAL
+       =================================================== */
+    let selectedSize = null;
+
+    function openQuickView(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      selectedSize = p.sizes[0]; // Default selection
+
+      const modalContent = document.getElementById('modalContent');
+      modalContent.innerHTML = `
+        <button class="modal-close" onclick="closeQuickView()">&times;</button>
+        <div>
+          <img src="${p.image}" alt="${p.title}" style="width:100%; border-radius:2px;" onerror="this.src='https://placehold.co/600x800/E8E1D5/20211F?text=Product'">
+        </div>
+        <div style="display:flex; flex-direction:column; justify-content:center;">
+          <span class="product-category">${p.category.toUpperCase()}</span>
+          <h2 class="section-title" style="font-size:28px; margin-bottom:12px;">${p.title}</h2>
+          <div class="price-row" style="font-size:20px; margin-bottom:16px;">
+            <span class="price-current">${inrFormatter.format(p.price)}</span>
+            ${p.originalPrice ? `<span class="price-original">${inrFormatter.format(p.originalPrice)}</span>` : ''}
+          </div>
+          <p style="font-size:13px; color:#555; margin-bottom:20px;">${p.description}</p>
+          
+          <label class="form-label">Select Size:</label>
+          <div class="size-selector">
+            ${p.sizes.map(s => `<button class="size-btn ${s === selectedSize ? 'selected' : ''}" onclick="selectSize(this, '${s}')">${s}</button>`).join('')}
+          </div>
+
+          <button class="checkout-btn" style="margin-top:20px;" onclick="addToCart(${p.id})">Add to Shopping Bag</button>
+        </div>
+      `;
+
+      document.getElementById('quickViewModal').classList.add('open');
+    }
+
+    function selectSize(btn, size) {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedSize = size;
+    }
+
+    function closeQuickView() {
+      document.getElementById('quickViewModal').classList.remove('open');
+    }
+
+    /* ===================================================
+       7. CART & SHOPPING BAG DRAWER
+       =================================================== */
+    function addToCart(productId) {
+      const p = PRODUCTS.find(x => x.id === productId);
+      const existing = cart.find(item => item.id === productId && item.size === selectedSize);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          id: p.id,
+          title: p.title,
+          price: p.price,
+          image: p.image,
+          size: selectedSize || p.sizes[0],
+          qty: 1
+        });
+      }
+
+      saveCart();
+      closeQuickView();
+      toggleCartDrawer(true);
+    }
+
+    function saveCart() {
+      localStorage.setItem('pt_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const countHeader = document.getElementById('cartItemCountHeader');
+      const badge = document.getElementById('cartBadge');
+      const container = document.getElementById('cartItemsContainer');
+
+      const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+      countHeader.textContent = totalQty;
+      badge.textContent = totalQty;
+
+      if (cart.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding:40px 0; color:#888;">
+          <p>Your bag is currently empty.</p>
+        </div>`;
+      } else {
+        container.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <img class="cart-item-img" src="${item.image}" alt="${item.title}">
+            <div class="cart-item-details">
+              <h4 class="cart-item-title">${item.title}</h4>
+              <p class="cart-item-meta">Size: ${item.size}</p>
+              <p class="cart-item-price">${inrFormatter.format(item.price)}</p>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
+                <span class="qty-val">${item.qty}</span>
+                <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button style="font-size:18px; color:#aaa;" onclick="removeItem(${index})">&times;</button>
+          </div>
+        `).join('');
+      }
+
+      calculateTotals();
+    }
+
+    function updateQty(index, change) {
+      cart[index].qty += change;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    function calculateTotals() {
+      const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      let discount = 0;
+      let shipping = subtotal >= 1499 || subtotal === 0 ? 0 : 79;
+
+      if (appliedCoupon === 'WELCOME10') {
+        discount = subtotal * 0.10;
+      } else if (appliedCoupon === 'CRICKET15') {
+        discount = subtotal * 0.15;
+      } else if (appliedCoupon === 'FREESHIP') {
+        shipping = 0;
+      }
+
+      const total = Math.max(0, subtotal - discount + shipping);
+
+      document.getElementById('cartSubtotal').textContent = inrFormatter.format(subtotal);
+      document.getElementById('cartDiscount').textContent = `-${inrFormatter.format(discount)}`;
+      document.getElementById('cartShipping').textContent = shipping === 0 ? 'FREE' : inrFormatter.format(shipping);
+      document.getElementById('cartTotal').textContent = inrFormatter.format(total);
+
+      // Checkout elements updates
+      document.getElementById('coSubtotal').textContent = inrFormatter.format(subtotal);
+      document.getElementById('coDiscount').textContent = `-${inrFormatter.format(discount)}`;
+      document.getElementById('coShipping').textContent = shipping === 0 ? 'FREE' : inrFormatter.format(shipping);
+      document.getElementById('coTotal').textContent = inrFormatter.format(total);
+    }
+
+    function toggleCartDrawer(forceOpen = false) {
+      const drawer = document.getElementById('cartDrawer');
+      const overlay = document.getElementById('drawerOverlay');
+
+      if (forceOpen || !drawer.classList.contains('open')) {
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+      } else {
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+      }
+    }
+
+    /* ===================================================
+       8. COUPON SYSTEM
+       =================================================== */
+    function handleApplyCoupon() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      if (!code) return;
+
+      if (['WELCOME10', 'CRICKET15', 'FREESHIP'].includes(code)) {
+        appliedCoupon = code;
+        const tag = document.getElementById('appliedCouponTag');
+        tag.style.display = 'block';
+        tag.textContent = `Coupon Applied: ${code}`;
+        calculateTotals();
+      } else {
+        alert('Invalid Coupon Code. Try WELCOME10, CRICKET15, or FREESHIP');
+      }
+    }
+
+    function applyCouponDirectly(code) {
+      appliedCoupon = code;
+      document.getElementById('couponInput').value = code;
+      handleApplyCoupon();
+      toggleCartDrawer(true);
+    }
+
+    /* ===================================================
+       9. CHECKOUT & ORDER PLACEMENT
+       =================================================== */
+    function openCheckout() {
+      if (cart.length === 0) {
+        alert('Your shopping bag is empty.');
+        return;
+      }
+      toggleCartDrawer();
+
+      // Render Checkout Items Summary
+      const summaryBox = document.getElementById('checkoutSummaryItems');
+      summaryBox.innerHTML = cart.map(item => `
+        <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:13px;">
+          <div>
+            <strong>${item.title}</strong> (${item.size}) &times; ${item.qty}
+          </div>
+          <div>${inrFormatter.format(item.price * item.qty)}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('checkoutView').classList.add('active');
+    }
+
+    function closeCheckout() {
+      document.getElementById('checkoutView').classList.remove('active');
+    }
+
+    function processOrder(e) {
+      e.preventDefault();
+      // Generate Order ID
+      const orderId = '#PT-' + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('outOrderId').textContent = orderId;
+
+      // Clear Cart
+      cart = [];
+      saveCart();
+
+      closeCheckout();
+      document.getElementById('orderSuccessModal').classList.add('open');
+    }
+
+    function resetAndHome() {
+      document.getElementById('orderSuccessModal').classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
